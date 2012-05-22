@@ -1,5 +1,5 @@
 # TODO
-# - optflags (-Os -s used upstream)
+# - ldflags not functioning
 Summary:	Searcheninge for Musicrelated Metadata
 Name:		glyr
 Version:	0.9.9
@@ -9,10 +9,12 @@ Group:		Applications/Multimedia
 URL:		https://github.com/sahib/glyr
 Source0:	https://github.com/downloads/sahib/glyr/%{name}-%{version}.tar.bz2
 # Source0-md5:	289644694b36a7a19a478766c2763fc7
-BuildRequires:	cmake
-BuildRequires:	pkgconfig(glib-2.0)
+Patch0:		optflags.patch
+BuildRequires:	cmake >= 2.8.0
+BuildRequires:	pkgconfig(glib-2.0) >= 2.10
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	rpmbuild(macros) >= 1.600
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -53,11 +55,17 @@ Glyr development files.
 
 %prep
 %setup -qn %{name}
+%patch0 -p0
 
 %build
 install -d build
 cd build
+# NOTE: CMAKE_BUILD_TYPE is not functioning in this project, so we redefine them for _RELEASE
 %cmake \
+	-DCMAKE_C_FLAGS_RELEASE="%{rpmcflags}" \
+	-DCMAKE_EXE_LINKER_FLAGS_RELASE="%{rpmldflags}" \
+	-DCMAKE_SHARED_LINKER_FLAGS_RELASE="%{rpmldflags}" \
+	-DCMAKE_MODULE_LINKER_FLAGS_RELASE="%{rpmldflags}" \
 	../
 %{__make} VERBOSE=1
 

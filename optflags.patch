@@ -1,0 +1,16 @@
+Description: Use default openSUSE optimization flags.
+Author: Kyrill Detinov <lazy.kent@opensuse.org>
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -62,8 +62,8 @@ IF(CMAKE_COMPILER_IS_GNUCC)
+ ENDIF()
+ 
+ SET(COMMON_FLAGS "${GCC_ONLY_FLAGS} -Wall -Wextra -Wstrict-prototypes -W -Wno-unused-parameter -Wno-strict-prototypes -fvisibility=hidden")
+-SET(CMAKE_C_FLAGS_RELEASE "${COMMON_FLAGS} ${CMAKE_C_FLAGS} -Os ${GCC_ONLY_OPT}")
+-SET(CMAKE_C_FLAGS_DEBUG   "${COMMON_FLAGS} ${CMAKE_C_FLAGS} -ggdb3")
++#SET(CMAKE_C_FLAGS_RELEASE "${COMMON_FLAGS} ${CMAKE_C_FLAGS} -Os ${GCC_ONLY_OPT}")
++#SET(CMAKE_C_FLAGS_DEBUG   "${COMMON_FLAGS} ${CMAKE_C_FLAGS} -ggdb3")
+ SET(CMAKE_C_FLAGS "${COMMON_FLAGS} ${CMAKE_C_FLAGS}")
+ # ------------------------------------------------
