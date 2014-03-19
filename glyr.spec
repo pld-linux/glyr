@@ -2,13 +2,13 @@
 # - ldflags not functioning
 Summary:	Searcheninge for Musicrelated Metadata
 Name:		glyr
-Version:	0.9.9
+Version:	1.0.5
 Release:	1
 License:	GPL v3+
 Group:		Applications/Multimedia
 URL:		https://github.com/sahib/glyr
-Source0:	https://github.com/downloads/sahib/glyr/%{name}-%{version}.tar.bz2
-# Source0-md5:	289644694b36a7a19a478766c2763fc7
+Source0:	http://github.com/sahib/glyr/archive/%{version}.tar.gz?/%{name}-%{version}.tar.gz
+# Source0-md5:	d22052a4eb2f3bbc4a89e879cb9c1740
 Patch0:		optflags.patch
 BuildRequires:	cmake >= 2.8.0
 BuildRequires:	pkgconfig(glib-2.0) >= 2.10
@@ -54,7 +54,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Glyr development files.
 
 %prep
-%setup -qn %{name}
+%setup -q
 %patch0 -p0
 
 %build
@@ -85,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS CHANGELOG README.textile TODO
+%doc AUTHORS CHANGELOG README.textile
 %attr(755,root,root) %{_bindir}/glyrc
 
 %files libs
