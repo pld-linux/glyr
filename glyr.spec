@@ -1,6 +1,6 @@
 # TODO
 # - ldflags not functioning
-Summary:	Searcheninge for Musicrelated Metadata
+Summary:	Search engine for music related metadata
 Name:		glyr
 Version:	1.0.5
 Release:	1
